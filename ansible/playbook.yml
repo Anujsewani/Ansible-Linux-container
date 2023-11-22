@@ -1,13 +1,13 @@
 - hosts: all
-- tasks:
-    - name: "ssh into container2"
-      shell: hostname -i
-      register: shell_output
-    - debug: 
-        var: shell_output
+  tasks:
+  - name: "ssh into container2"
+    shell: hostname -i
+    register: shell_output
+  - debug: 
+      var: shell_output
 
-    - name: "ping"
-      ping:
-      register: pingip
-    - debug: 
-        var: pingip
+  - name: "ping"
+    ping:
+    register: pingip
+  - debug: 
+      var: pingip
