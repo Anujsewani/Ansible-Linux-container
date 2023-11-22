@@ -4,6 +4,8 @@ services:
     build: 
       context: https://github.com/Anujsewani/Ansible-Linux-container.git
       dockerfile: /Dockerfile
+      args:
+        - GIT_BRANCH=main
     container_name: ansible-server-container
     ports: 
       - "2222:22"
