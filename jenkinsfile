@@ -1,7 +1,6 @@
-def image="ansible_linux"
 def final_image="sewani/ansible_linux"
 def tag= "latest"
-def network_name="mynetwork"
+def network_name="ansible-linux_net"
 pipeline{
 	agent any
 	environment{
@@ -11,7 +10,8 @@ pipeline{
 		stage("docker build"){
 			steps{
 				script{
-					sh"docker build -t  ${final_image}:${tag} -f Dockerfile ."
+					#sh"docker build -t  ${final_image}:${tag} -f Dockerfile ."
+					sh"docker-compose up -d "
 					}
 				}
 			}
@@ -32,7 +32,8 @@ pipeline{
 		stage("create network"){
                         steps{
                                 script{
-                                        sh "docker network create ${network_name} --subnet='172.168.100.1/24'"
+					echo "hi"
+                                        #sh "docker network create ${network_name} --subnet='172.168.100.1/24'"
                                         }
                                 }
                         }
@@ -40,14 +41,16 @@ pipeline{
 		stage("docker container1 launch"){
 			steps{
 				script{
-					sh "docker run -itd --network ${network_name} --name container1 ${final_image}:${tag}"
+					#sh "docker run -itd --network ${network_name} --name container1 ${final_image}:${tag}"
+					sh "docker start ansible-server-container"
 					}
 				}
 			}
 		stage("launch 2nd container"){
                         steps{
                                 script{
-                                        sh "docker run -itd --network=${network_name} --ip='172.168.100.3' --name container2  ${final_image}:${tag}"
+                                        #sh "docker run -itd --network=${network_name} --ip='172.168.100.3' --name container2  ${final_image}:${tag}"
+					sh"docker start ansible-node-container"
                                         }
                                 }
                         }
@@ -65,8 +68,8 @@ pipeline{
 		stage("cleanup"){
 			steps{
 				script{
-					sh"docker stop container1 container2"
-					sh"docker rm container1 container2"
+					sh"docker stop ansible-server-container ansible-node-container"
+					sh"docker rm ansible-server-container ansible-node-container"
 					sh"docker network rm ${network_name}"
 					}
 				}
