@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 LABEL name="Ansible Linux Container"
 LABEL description="This is a Linux container designed to run Ansible."
-RUN git clone -b main https://github.com/Anujsewani/Ansible-Linux-container.git /ansible
+#RUN git clone -b main https://github.com/Anujsewani/Ansible-Linux-container.git /ansible
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y  python3-pip python3 sshpass git openssh-server  vim && \
     rm -rf /var/lib/apt/lists/* && \
