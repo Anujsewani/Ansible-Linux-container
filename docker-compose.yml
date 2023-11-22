@@ -1,0 +1,24 @@
+version: "3"
+services: 
+  ansible-server-container: 
+    build: 
+      context: https://github.com/Anujsewani/Ansible-Linux-container.git
+      dockerfile: Dockerfile
+    container_name: ansible-server-container
+    ports: 
+      - "2222:22"
+      - "80:80"
+    networks: 
+      - net
+  ansible-client-container:
+    image: sewani/ansible_linux:latest
+    container_name: ansible-node-container
+    ports:
+      - "2223:22"
+      - "81:80"
+    networks:
+      - net
+networks: 
+  net: 
+   driver: bridge 
+  
