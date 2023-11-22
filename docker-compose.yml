@@ -3,7 +3,7 @@ services:
   ansible-server-container: 
     build: 
       context: https://github.com/Anujsewani/Ansible-Linux-container.git
-      dockerfile: Dockerfile
+      dockerfile: /Dockerfile
     container_name: ansible-server-container
     ports: 
       - "2222:22"
