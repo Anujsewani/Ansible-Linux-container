@@ -47,7 +47,7 @@ pipeline{
 		stage("launch 2nd container"){
                         steps{
                                 script{
-                                        sh "docker run -itd --network=${network_name} --ip='172.168.100.3'  ${final_image}:${tag}"
+                                        sh "docker run -itd --network=${network_name} --ip='172.168.100.3' --name container2  ${final_image}:${tag}"
                                         }
                                 }
                         }
