@@ -1,5 +1,4 @@
-
-- host: all
+- hosts: all
 - tasks:
     - name: "ssh into container2"
       shell: hostname -i

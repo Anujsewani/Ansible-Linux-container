@@ -62,6 +62,12 @@ pipeline{
 					}
 				}
 			}
+		stage("cleanup"){
+			steps{
+				script{
+					sh"docker stop container1 container2"
+					sh"docker rm container1 container2"
+					sh"docker network rm ${network_name}"
 		}
 	}
 	
