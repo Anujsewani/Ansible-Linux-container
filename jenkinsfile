@@ -5,7 +5,7 @@ def network_name=mynetwork
 pipeline{
 	agent any
 	environment{
-		Dockerhub_Credentials=credentias("dockerhub")
+		Dockerhub_Credentials=credentias("Docker")
 		}
 	stages{
 		stage("docker build"){
