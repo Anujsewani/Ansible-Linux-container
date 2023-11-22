@@ -7,6 +7,13 @@ pipeline{
 		Dockerhub_Credentials=credentials("Docker")
 		}
 	stages{
+		stage('Clone Repository') {
+            		steps {
+                		script {
+                    			checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Anujsewani/Ansible-Linux-container.git']]])
+               				 }
+           			 }
+       			 }
 		stage("docker build"){
 			steps{
 				script{
