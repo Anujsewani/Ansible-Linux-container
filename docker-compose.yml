@@ -2,7 +2,7 @@ version: "3"
 services: 
   ansible-server-container: 
     build: 
-    #context: https://github.com/Anujsewani/Ansible-Linux-container.git
+      context: https://github.com/Anujsewani/Ansible-Linux-container.git/
       dockerfile: Dockerfile
       #args:
               # - GIT_BRANCH=main
