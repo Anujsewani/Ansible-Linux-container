@@ -1,7 +1,7 @@
-def image=ansible_linux
-def final_image=sewani/ansible_linux
-def tag= latest
-def network_name=mynetwork
+def image="ansible_linux"
+def final_image="sewani/ansible_linux"
+def tag= "latest"
+def network_name="mynetwork"
 pipeline{
 	agent any
 	environment{
