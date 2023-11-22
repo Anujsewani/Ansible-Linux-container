@@ -58,8 +58,7 @@ pipeline{
 					sh "docker cp ansible/hosts container1:/etc/ansible/hosts"
 					sh "docker cp ansible/playbook.yml container1:/etc/ansible/"
 					sh "docker cp ansible/ansible.cfg container1:/etc/ansible/"
-					sh " docker exec container1 /bin/bash"
-					sh "ansible-playbook /etc/ansible/playbook.yml -i /etc/ansible/hosts"
+					sh " docker exec container1 ansible-playbook /etc/ansible/playbook.yml -i /etc/ansible/hosts"
 					}
 				}
 			}
