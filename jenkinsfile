@@ -1,6 +1,6 @@
 def final_image="sewani/ansible_linux"
 def tag= "latest"
-def network_name="ansible-linux_net"
+def network_name="ansiblelinuxcontainer_net"
 pipeline{
 	agent any
 	environment{
@@ -44,6 +44,8 @@ pipeline{
                         steps{
                                 script{
 					echo "hi"
+					sh "docker network ls"
+					sh "docker network  inspect ${network_name}"
                                         //sh "docker network create ${network_name} --subnet='172.168.100.1/24'"
                                         }
                                 }
@@ -69,7 +71,7 @@ pipeline{
 		stage("setup ansible hosts"){
 			steps{
 				script{
-					sh "docker cp ansible/hosts container1:/etc/ansible/hosts"
+					sh "docker cp ansible/hosts ansible-server-container:/etc/ansible/hosts"
 					sh "docker cp ansible/playbook.yml container1:/etc/ansible/"
 					sh "docker cp ansible/ansible.cfg container1:/etc/ansible/"
 					sh " docker exec container1 ansible-playbook /etc/ansible/playbook.yml -i /etc/ansible/hosts"
