@@ -46,7 +46,7 @@ pipeline{
 					echo "hi"
 					sh "docker network ls"
 					sh "docker network  inspect ${network_name}"
-                                        }                                       }
+                                        }                                       
                                 }
                         }
 
