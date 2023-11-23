@@ -11,7 +11,7 @@ pipeline{
             		steps {
                 		script {
 					git 'remote set-url origin https://github.com/Anujsewani/Ansible-Linux-container.git'
-                    			checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Anujsewani/Ansible-Linux-container.git']]])
+                    			checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Anujsewani/Ansible-Linux-container.git', credentialsId: 'Github']]])
                				 }
            			 }
        			 }
