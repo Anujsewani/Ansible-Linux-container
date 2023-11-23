@@ -34,14 +34,12 @@ pipeline{
 		stage("create network"){
                         steps{
                                 script{
-				
-					sh "docker network ls"
 					sh "docker network  inspect ${network_name}"
                                         }                                       
                                 }
 			}
 
-		stage("setup ansible hosts"){
+		stage("setup ansible server"){
 			steps{
 				script{
 					sh "docker cp ansible/hosts ansible-server-container:/etc/ansible/hosts"
