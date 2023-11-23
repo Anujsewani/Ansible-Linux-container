@@ -12,7 +12,7 @@ pipeline{
                 		script {
 					sh"git remote -v"
 					sh "git remote show origin"
-					//git 'remote set-url origin https://github.com/Anujsewani/Ansible-Linux-container.git'
+					sh "git remote set-url origin https://github.com/Anujsewani/Ansible-Linux-container.git"
                     			checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Anujsewani/Ansible-Linux-container.git', credentialsId: 'Github']]])
                				 }
            			 }
