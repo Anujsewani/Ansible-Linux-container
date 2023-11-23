@@ -46,8 +46,7 @@ pipeline{
 					echo "hi"
 					sh "docker network ls"
 					sh "docker network  inspect ${network_name}"
-                                        //sh "docker network create ${network_name} --subnet='172.168.100.1/24'"
-                                        }
+                                        }                                       }
                                 }
                         }
 
@@ -55,14 +54,15 @@ pipeline{
 			steps{
 				script{
 					//sh "docker run -itd --network ${network_name} --name container1 ${final_image}:${tag}"
-					sh "docker start ansible-server-container"
+					//sh "docker start ansible-server-container"
+					echo "container 1 started"
 					}
 				}
 			}
 		stage("launch 2nd container"){
                         steps{
                                 script{
-                                        //sh "docker run -itd --network=${network_name} --ip='172.168.100.3' --name container2  ${final_image}:${tag}"
+                                        
 					sh"docker start ansible-node-container"
                                         }
                                 }
@@ -74,7 +74,7 @@ pipeline{
 					sh "docker cp ansible/hosts ansible-server-container:/etc/ansible/hosts"
 					sh "docker cp ansible/playbook.yml ansible-server-container:/etc/ansible/"
 					sh "docker cp ansible/ansible.cfg ansible-server-container:/etc/ansible/"
-					sh " docker exec ansible-server-container ansible-playbook /etc/ansible/playbook.yml -i /etc/ansible/hosts"
+					sh "docker exec ansible-server-container ansible-playbook /etc/ansible/playbook.yml -i /etc/ansible/hosts"
 					}
 				}
 			}
