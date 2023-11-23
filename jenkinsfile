@@ -7,16 +7,7 @@ pipeline{
 		Dockerhub_Credentials=credentials("Docker")
 		}
 	stages{
-		stage('Clone Repository') {
-            		steps {
-                		script {
-					sh"git remote -v"
-					sh "git remote show origin"
-					sh "git remote set-url origin https://github.com/Anujsewani/Ansible-Linux-container.git"
-                    			checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Anujsewani/Ansible-Linux-container.git', credentialsId: 'Github']]])
-               				 }
-           			 }
-       			 }
+		
 		stage("docker build"){
 			steps{
 				script{
@@ -43,30 +34,12 @@ pipeline{
 		stage("create network"){
                         steps{
                                 script{
-					echo "hi"
+				
 					sh "docker network ls"
 					sh "docker network  inspect ${network_name}"
                                         }                                       
                                 }
-                        }
-
-		stage("docker container1 launch"){
-			steps{
-				script{
-					//sh "docker run -itd --network ${network_name} --name container1 ${final_image}:${tag}"
-					//sh "docker start ansible-server-container"
-					echo "container 1 started"
-					}
-				}
 			}
-		stage("launch 2nd container"){
-                        steps{
-                                script{
-                                        
-					sh"docker start ansible-node-container"
-                                        }
-                                }
-                        }
 
 		stage("setup ansible hosts"){
 			steps{
