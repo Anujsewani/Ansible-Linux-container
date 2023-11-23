@@ -11,16 +11,22 @@ services:
       - "2222:22"
       - "80:80"
     networks: 
-      - net
+      net: 
+        ipv4_address: 172.168.100.2
   ansible-client-container:
     image: sewani/ansible_linux:latest
     container_name: ansible-node-container
     ports:
       - "2223:22"
       - "81:80"
-    networks:
-      - net
+    networks: 
+      net: 
+        ipv4_address: 172.168.100.3
+        
 networks: 
   net: 
    driver: bridge 
+   ipam: 
+     config: 
+       - subnet: 172.168.100.1/24
   
