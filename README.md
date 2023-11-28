@@ -39,4 +39,4 @@ docker network rm ansible-linux-net (your network name as specified in docker-co
 - [sewani/ansible_linux](https://hub.docker.com/repository/docker/sewani/ansible_linux/general)
 
 ## Image
-![Image](https://github.com/Anujsewani/Ansible-Linux-container/blob/main/ansible%20linux.png)
+![Image](https://github.com/Anujsewani/Ansible-Linux-container/blob/main/ansible_linux.png)
